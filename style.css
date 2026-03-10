@@ -1,0 +1,486 @@
+/* ============================================================
+   Luke Forshaw — Personal Site
+   style.css
+   ============================================================ */
+
+/* === Variables === */
+:root {
+  --text:         #1a1a1a;
+  --text-muted:   #6b7280;
+  --bg:           #ffffff;
+  --bg-alt:       #f9f8f5;
+  --accent:       #2d5986;
+  --accent-hover: #1e3f66;
+  --border:       #e5e7eb;
+  --max-width:    740px;
+  --nav-height:   62px;
+  --radius:       3px;
+}
+
+/* === Reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Base === */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+               Ubuntu, Cantarell, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* Offset anchor targets so sticky nav doesn't cover them */
+:target {
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+
+/* === Links === */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+/* === Container === */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: sticky;
+  top: 0;
+  height: var(--nav-height);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 200;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-name:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Hamburger — hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Animate hamburger → X when open */
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 5rem 0 4.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.01em;
+}
+
+.hero-bio {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 620px;
+  margin-bottom: 2.25rem;
+  color: var(--text);
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.hero-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  letter-spacing: 0.01em;
+}
+
+.hero-links a:hover,
+.hero-links a:focus-visible {
+  color: var(--text);
+  border-color: var(--text);
+  text-decoration: none;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section.alt {
+  background: var(--bg-alt);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: -0.015em;
+  margin-bottom: 2.25rem;
+  color: var(--text);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   ROLE ENTRIES  (experience + education)
+   ============================================================ */
+.role {
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.role:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.role h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.org {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.dates {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-top: 3px;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+}
+
+/* Teaching areas callout */
+.teaching-note {
+  margin-top: 1.75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.section.alt .teaching-note {
+  background: var(--bg);
+}
+
+.teaching-note p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-list {
+  list-style: none;
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.contact-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.footer-links a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 600px) {
+  /* Nav: show hamburger, hide links by default */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 2.5rem 0 2.5rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+  }
+
+  /* Role headers stack vertically */
+  .role-header {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .dates {
+    padding-top: 0;
+  }
+
+  /* Contact list */
+  .contact-list li {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  nav, footer { display: none; }
+  .section, .hero { padding: 2rem 0; }
+  a { color: var(--text); }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+}
